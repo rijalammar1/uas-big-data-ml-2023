@@ -64,7 +64,7 @@
 
 <div align="center">
 
-# Hasil Visualisasi
+# Kelompok
 
 Irba Adika Jaya
 
