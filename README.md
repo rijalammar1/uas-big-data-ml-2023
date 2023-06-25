@@ -7,24 +7,25 @@
 <img src = 'https://github.com/rijalammar1/uas-big-data-ml-2023/assets/75898886/8fa74c54-dc26-41b4-a6bd-935811bee67c' width=70% height=70%>
  
  ```sh
-  Code ini berfungsi unutk mengkoneksikan google colab dengan drive kita
+ Yang pertamna memasukan code yang berfungsi unutk mengkoneksikan google colab dengan drive kita
   ```
 
 <img src = 'https://github.com/rijalammar1/uas-big-data-ml-2023/assets/75898886/abb70dd1-1ffb-4e62-8a22-9bc05bd7d410' width=70% height=70%>
 
 ```sh
-  Code ini berfungsi unutk menginstall pysprak di dalam google colab
+ kemudian menabahkan code ini yang berfungsi unutk menginstall pysprak di dalam google colab
   ```
 
 <img src = 'https://github.com/rijalammar1/uas-big-data-ml-2023/assets/75898886/b19aa74e-c69c-408f-9fe8-6c318843caa4' width=70% height=70%>
 
 ```sh
-  Code ini berfungsi unutk menginstall library Geopandas
+  Setelah itu memasukan code ini yang berfungsi unutk menginstall library Geopandas
   ```
 
 <img src = 'https://github.com/rijalammar1/uas-big-data-ml-2023/assets/75898886/244453ef-9e25-4de2-ab74-16a371c579c8' width=70% height=70%>
 
 ```sh
+  Setelah itu melakukan import untuk kebutuhan mengolah data dan menvisulaisai data menjadi cart
   - from pyspark.sql import SparkSession: Ini mengimpor kelas SparkSession yang diperlukan untuk memulai sesi Spark. SparkSession adalah titik masuk utama untuk berinteraksi dengan data dalam Spark.
   - from pyspark.ml.feature import VectorAssembler: Ini mengimpor kelas VectorAssembler yang digunakan untuk menggabungkan beberapa kolom fitur menjadi satu kolom vektor fitur. Ini diperlukan dalam proses pemodelan regresi.
   - from pyspark.ml.regression import LinearRegression: Ini mengimpor kelas LinearRegression yang digunakan untuk membangun model regresi linear.
