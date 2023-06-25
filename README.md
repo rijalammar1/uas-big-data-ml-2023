@@ -54,6 +54,35 @@
   Code ini berfungsi untuk menselect data yang akan dipakai kemudian merename nama tabel setelah itu menggabungkan data indicator,sex,time period, dan obs value unutk mencari negara mana yang memiliki malnutrisi paling tinggi setelah medapatkannya kemudian data dijadikan bar cart
   ```
 
+<img src = 'https://github.com/rijalammar1/uas-big-data-ml-2023/assets/75898886/3ed904ea-39c3-410c-8b3e-1623408972f5' width=70% height=70%>
+
+```sh
+  - Kode pertama memilih kolom-kolom yang akan diproses dari dataset data. Kolom yang dipilih adalah "TIME_PERIOD", "Country", "Sex", "Indicator", dan "OBS_VALUE". Nama kolom-kolom ini kemudian diubah menggunakan fungsi withColumnRenamed.
+  - Pada tahap ini, data yang memiliki nilai kosong (null) pada kolom "obs_value" atau memiliki nilai negatif dihapus dari data_new. Hal ini dilakukan dengan menggunakan fungsi filter dan operator logika & (AND).
+  - Kolom "time_period" pada data_new dikonversi menjadi tipe data integer menggunakan fungsi withColumn dan cast.
+  - max_obs dan data_new digabungkan berdasarkan kolom "indicator", "country", dan "max_obs_value". Ini dilakukan dengan menggunakan fungsi join pada kondisi yang diberikan. Hanya kolom-kolom yang relevan dipilih dalam hasil gabungan menggunakan fungsi select.
+  - Kolom-kolom yang akan digunakan sebagai fitur dalam model regresi linier dipilih sebagai input menggunakan VectorAssembler. Input kolom-kolom ini diubah menjadi vektor tunggal dalam kolom baru yang disebut "features".
+  - Data yang telah diubah menggunakan VectorAssembler dibagi menjadi data pelatihan (trainingData) dan data pengujian (testData) dalam proporsi 80:20 menggunakan fungsi randomSplit.
+  - Model regresi linier dibuat dengan menggunakan LinearRegression dari Spark MLlib. Fitur yang telah dihasilkan dari VectorAssembler dijadikan fitur (featuresCol) dan kolom "max_obs_value" dijadikan label (labelCol) dalam model.
+  - Model yang telah dilatih digunakan untuk membuat prediksi pada data pengujian. Hasil prediksi dan nilai aktual ("max_obs_value") diekstrak dari dataframe predictions dan dikonversi menjadi daftar Python menggunakan toPandas(). Nilai prediksi dan aktual ini digunakan untuk membuat scatter plot.
+  ```
+
+<img src = 'https://github.com/rijalammar1/uas-big-data-ml-2023/assets/75898886/9b7677a4-ae66-4535-aac6-198eea0fa1a0' width=70% height=70%>
+
+```sh
+  - Kode pertama memilih kolom-kolom yang akan diproses dari dataset data. Kolom yang dipilih adalah "TIME_PERIOD", "Country", "Sex", "Indicator", dan "OBS_VALUE". Nama kolom-kolom ini kemudian diubah menggunakan fungsi withColumnRenamed.
+  - Pada tahap ini, data yang memiliki nilai kosong (null) pada kolom "obs_value" atau memiliki nilai negatif dihapus dari data_new. Hal ini dilakukan dengan menggunakan fungsi filter dan operator logika & (AND).
+  - data_new dikelompokkan berdasarkan kolom "country" dan "indicator", dan nilai maksimum dari kolom "obs_value" dihitung menggunakan fungsi groupBy dan agg. Hasilnya disimpan dalam variabel max_obs.
+  - max_obs dan data_new digabungkan berdasarkan kolom "indicator", "country", dan "max_obs_value". Ini dilakukan dengan menggunakan fungsi join pada kondisi yang diberikan. Hanya kolom-kolom yang relevan dipilih dalam hasil gabungan menggunakan fungsi select.
+  - Kolom-kolom yang akan digunakan sebagai fitur dalam model regresi linier dipilih sebagai input menggunakan VectorAssembler. Input kolom-kolom ini diubah menjadi vektor tunggal dalam kolom baru yang disebut "features".
+  - Data yang telah diubah menggunakan VectorAssembler dibagi menjadi data pelatihan (trainingData) dan data pengujian (testData) dalam proporsi 80:20 menggunakan fungsi randomSplit.
+  - Model regresi linier dibuat dengan menggunakan LinearRegression dari Spark MLlib. Fitur yang telah dihasilkan dari VectorAssembler dijadikan fitur (featuresCol) dan kolom "max_obs_value" dijadikan label (labelCol) dalam model.
+  - Model yang telah dilatih digunakan untuk membuat prediksi pada data pengujian. Hasil prediksi dievaluasi menggunakan RegressionEvaluator dengan membandingkan nilai prediksi dengan nilai aktual ("max_obs_value"). Metrik evaluasi yang digunakan adalah root mean squared error (RMSE). Hasil prediksi dan nilai aktual disimpan dalam dataframe predictions.
+  - Dataset geospasial "naturalearth_lowres" diunduh menggunakan gpd.datasets.get_path. Dataset ini digunakan untuk membuat peta dunia. Dataframe predictions digabungkan dengan dataset geospasial berdasarkan kolom "country" dan "name" menggunakan fungsi merge. Hal ini memungkinkan penggabungan prediksi nilai malnutrisi dengan data geospasial untuk menghasilkan visualisasi pada peta dunia.
+  - Kolom "prediction" dalam dataframe merged_data diisi dengan nilai 0 untuk negara-negara yang tidak memiliki prediksi. Hal ini dilakukan dengan menggunakan metode fillna pada kolom tersebut.
+  - Pengaturan plot dilakukan menggunakan matplotlib. Ukuran plot disesuaikan dengan menggunakan fig, ax = plt.subplots(figsize=(12, 8)). Pembagian warna pada peta menggunakan skala "coolwarm" dan kolom "prediction" dari merged_data sebagai nilai yang digunakan dalam peta. Legend dan colorbar ditambahkan menggunakan legend=True dan cax=cax. Judul plot ditambahkan dengan ax.set_title dan sumbu x dan y dihilangkan dengan ax.axis("off"). Akhirnya, plot ditampilkan menggunakan plt.show().
+  ```
+
 <div align="center">
 
 # Hasil Visualisasi
@@ -61,7 +90,11 @@
 
 </div>
 
-<img src = 'https://github.com/rijalammar1/uas-big-data-ml-2023/assets/75898886/f665ca21-4a24-4739-80ae-a10f99cc8485' width=70% height=70%>
+<img src = 'https://github.com/rijalammar1/uas-big-data-ml-2023/assets/75898886/f665ca21-4a24-4739-80ae-a10f99cc8485' width=65% height=65%>
+
+<img src = 'https://github.com/rijalammar1/uas-big-data-ml-2023/assets/75898886/6876ab1a-e182-42cc-95a1-394a19ded5cc' width=65% height=65%>
+
+<img src = 'https://github.com/rijalammar1/uas-big-data-ml-2023/assets/75898886/ec1047cd-0033-425d-a6f2-cf636f5ef40e' width=65% height=65%>
 
 <div align="center">
 
