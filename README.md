@@ -91,7 +91,7 @@
 </div>
 
 
-<img src = 'https://github.com/rijalammar1/uas-big-data-ml-2023/assets/75898886/8604cd5a-d4eb-4bfc-a2c2-9bf56155f5a7' width=65% height=65%>
+<img src = 'https://github.com/rijalammar1/uas-big-data-ml-2023/assets/75898886/8604cd5a-d4eb-4bfc-a2c2-9bf56155f5a7' width=60% height=60%>
 
 ```sh
  Flowchart Pre-processing
@@ -99,7 +99,7 @@
 
 
 
-<img src = 'https://github.com/rijalammar1/uas-big-data-ml-2023/assets/75898886/0f4859d1-3127-4673-a587-72fa01841475' width=65% height=65%>
+<img src = 'https://github.com/rijalammar1/uas-big-data-ml-2023/assets/75898886/0f4859d1-3127-4673-a587-72fa01841475' width=60% height=60%>
 
 
 ```sh
